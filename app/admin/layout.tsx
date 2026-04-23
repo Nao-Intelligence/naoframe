@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireAdminUser } from "@/lib/auth";
 import { signOut } from "@/app/login/actions";
 import { NaoLogo } from "@/components/ui/NaoLogo";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 
 export default async function AdminLayout({
   children,
@@ -19,12 +20,12 @@ export default async function AdminLayout({
           <div className="flex items-center gap-4 text-sm text-zinc-600">
             <span>{user.email}</span>
             <form action={signOut}>
-              <button
-                type="submit"
-                className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm hover:bg-zinc-100"
+              <SubmitButton
+                className="rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm hover:bg-zinc-100 disabled:cursor-wait disabled:opacity-60"
+                pendingLabel="Melde ab…"
               >
                 Abmelden
-              </button>
+              </SubmitButton>
             </form>
           </div>
         </div>

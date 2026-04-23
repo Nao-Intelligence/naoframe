@@ -6,6 +6,7 @@ import {
   updateProjectBaseUrl,
   uploadWireframeBundle,
 } from "@/app/admin/actions";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 
 type Props = {
   projectId: string;
@@ -89,12 +90,12 @@ export function WireframeSource({
             placeholder="https://wire.acme-preview.nao.dev"
             className="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-zinc-900 focus:outline-none"
           />
-          <button
-            type="submit"
-            className="rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm hover:bg-zinc-100"
+          <SubmitButton
+            className="rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm hover:bg-zinc-100 disabled:cursor-wait disabled:opacity-60"
+            pendingLabel="Speichere…"
           >
             Speichern
-          </button>
+          </SubmitButton>
         </form>
       </div>
 

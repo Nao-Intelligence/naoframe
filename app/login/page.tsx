@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
 import { NaoLogo } from "@/components/ui/NaoLogo";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 import { signIn, sendPasswordReset } from "./actions";
 
 export const metadata: Metadata = { title: "Login · naoframe" };
@@ -38,12 +39,12 @@ export default async function LoginPage({
         ) : isReset ? (
           <form action={sendPasswordReset} className="mt-6 space-y-4">
             <Field id="email" name="email" label="E-Mail" type="email" autoComplete="email" required />
-            <button
-              type="submit"
-              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+            <SubmitButton
+              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+              pendingLabel="Sende…"
             >
               Reset-Link senden
-            </button>
+            </SubmitButton>
             {error ? <ErrorMessage code={error} /> : null}
             <p className="text-xs text-zinc-500">
               <Link href="/login" className="hover:underline">
@@ -55,12 +56,12 @@ export default async function LoginPage({
           <form action={signIn} className="mt-6 space-y-4">
             <Field id="email" name="email" label="E-Mail" type="email" autoComplete="email" required />
             <Field id="password" name="password" label="Passwort" type="password" autoComplete="current-password" required />
-            <button
-              type="submit"
-              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+            <SubmitButton
+              className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+              pendingLabel="Melde an…"
             >
               Anmelden
-            </button>
+            </SubmitButton>
             {error ? <ErrorMessage code={error} /> : null}
             <p className="text-xs text-zinc-500">
               <Link href="/login?mode=reset" className="hover:underline">

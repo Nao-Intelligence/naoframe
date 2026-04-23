@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createProject } from "@/app/admin/actions";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 
 export default function NewProjectPage() {
   return (
@@ -48,12 +49,12 @@ export default function NewProjectPage() {
           </label>
         </div>
 
-        <button
-          type="submit"
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+        <SubmitButton
+          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+          pendingLabel="Lege an…"
         >
           Projekt anlegen
-        </button>
+        </SubmitButton>
       </form>
     </div>
   );

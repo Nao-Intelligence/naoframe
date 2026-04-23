@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
 import { updateStory } from "@/app/admin/actions";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 
 export default async function EditStoryPage({
   params,
@@ -75,12 +76,12 @@ export default async function EditStoryPage({
           />
         </label>
         <div className="flex gap-3">
-          <button
-            type="submit"
-            className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          <SubmitButton
+            className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+            pendingLabel="Speichere…"
           >
             Speichern
-          </button>
+          </SubmitButton>
           <Link
             href={`/admin/projects/${id}`}
             className="rounded-md border border-zinc-300 px-4 py-2 text-sm hover:bg-zinc-50"

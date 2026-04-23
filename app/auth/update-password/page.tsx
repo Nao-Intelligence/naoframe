@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 import { updatePassword } from "./actions";
 
 export const metadata: Metadata = { title: "Passwort setzen · naoframe" };
@@ -41,12 +42,12 @@ export default async function UpdatePasswordPage({
             />
             <p className="mt-1 text-xs text-zinc-500">Mindestens 8 Zeichen.</p>
           </div>
-          <button
-            type="submit"
-            className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          <SubmitButton
+            className="w-full rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+            pendingLabel="Speichere…"
           >
             Passwort speichern
-          </button>
+          </SubmitButton>
           {error ? (
             <p className="text-sm text-red-600">
               {error === "too_short"

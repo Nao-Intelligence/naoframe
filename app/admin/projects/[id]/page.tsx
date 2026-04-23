@@ -14,6 +14,7 @@ import { CopyButton } from "@/components/admin/CopyButton";
 import { CsvImportButton } from "@/components/admin/CsvImportButton";
 import { DeleteProjectButton } from "@/components/admin/DeleteProjectButton";
 import { WireframeSource } from "@/components/admin/WireframeSource";
+import { SubmitButton } from "@/components/ui/SubmitButton";
 import { resolveWireframeBaseUrl } from "@/lib/wireframe";
 
 export default async function ProjectDetailPage({
@@ -241,12 +242,12 @@ export default async function ProjectDetailPage({
             rows={2}
             className="w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
           />
-          <button
-            type="submit"
-            className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          <SubmitButton
+            className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+            pendingLabel="Lege an…"
           >
             Story hinzufügen
-          </button>
+          </SubmitButton>
         </form>
 
         {stories.length > 0 ? (
@@ -299,12 +300,12 @@ export default async function ProjectDetailPage({
                       Bearbeiten
                     </Link>
                     <form action={deleteStory.bind(null, id, s.id)}>
-                      <button
-                        type="submit"
-                        className="rounded-md border border-zinc-300 px-3 py-1 text-xs text-rose-700 hover:bg-rose-50"
+                      <SubmitButton
+                        className="rounded-md border border-zinc-300 px-3 py-1 text-xs text-rose-700 hover:bg-rose-50 disabled:cursor-wait disabled:opacity-60"
+                        pendingLabel="Lösche…"
                       >
                         Löschen
-                      </button>
+                      </SubmitButton>
                     </form>
                   </div>
                 </li>
@@ -325,12 +326,12 @@ export default async function ProjectDetailPage({
             placeholder="Label (z.B. 'Kunde Acme — CEO')"
             className="flex-1 rounded-md border border-zinc-300 px-3 py-2 text-sm"
           />
-          <button
-            type="submit"
-            className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          <SubmitButton
+            className="rounded-md bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-60"
+            pendingLabel="Erzeuge…"
           >
             Link erzeugen
-          </button>
+          </SubmitButton>
         </form>
 
         {shareLinks.length > 0 ? (
@@ -381,12 +382,12 @@ export default async function ProjectDetailPage({
                     </div>
                     {status === "aktiv" ? (
                       <form action={revokeShareLink.bind(null, id, l.id)}>
-                        <button
-                          type="submit"
-                          className="shrink-0 rounded-md border border-zinc-300 px-3 py-1 text-xs text-rose-700 hover:bg-rose-50"
+                        <SubmitButton
+                          className="shrink-0 rounded-md border border-zinc-300 px-3 py-1 text-xs text-rose-700 hover:bg-rose-50 disabled:cursor-wait disabled:opacity-60"
+                          pendingLabel="Widerrufe…"
                         >
                           Widerrufen
-                        </button>
+                        </SubmitButton>
                       </form>
                     ) : null}
                   </div>
