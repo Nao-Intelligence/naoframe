@@ -13,12 +13,8 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-zinc-50 text-zinc-900">
       <header className="border-b border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <Link href="/admin" className="flex items-center gap-3">
+          <Link href="/admin" className="flex items-center">
             <NaoLogo className="h-7 w-auto" priority />
-            <span className="hidden text-sm text-zinc-400 sm:inline">·</span>
-            <span className="hidden text-sm font-medium text-zinc-700 sm:inline">
-              naoframe
-            </span>
           </Link>
           <div className="flex items-center gap-4 text-sm text-zinc-600">
             <span>{user.email}</span>
