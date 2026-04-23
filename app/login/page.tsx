@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/auth";
+import { NaoLogo } from "@/components/ui/NaoLogo";
 import { signIn, sendPasswordReset } from "./actions";
 
 export const metadata: Metadata = { title: "Login · naoframe" };
@@ -18,7 +19,10 @@ export default async function LoginPage({
   const isReset = mode === "reset";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-50 px-6 py-12">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-zinc-50 px-6 py-12">
+      <div className="mb-6">
+        <NaoLogo className="h-10 w-auto" priority />
+      </div>
       <div className="w-full max-w-sm rounded-xl border border-zinc-200 bg-white p-8 shadow-sm">
         <h1 className="text-xl font-semibold text-zinc-900">naoframe · Admin</h1>
         <p className="mt-2 text-sm text-zinc-600">

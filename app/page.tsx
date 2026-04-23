@@ -1,9 +1,13 @@
 import Link from "next/link";
+import { NaoLogo } from "@/components/ui/NaoLogo";
 
 export default function Home() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-16">
       <div className="max-w-lg text-center">
+        <div className="mb-8 flex justify-center">
+          <NaoLogo className="h-12 w-auto" priority />
+        </div>
         <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
           naoframe
         </h1>
