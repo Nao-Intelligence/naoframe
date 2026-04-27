@@ -11,12 +11,17 @@ export const metadata: Metadata = { title: "Login · naoframe" };
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ reset_sent?: string; error?: string; mode?: string }>;
+  searchParams: Promise<{
+    reset_sent?: string;
+    error?: string;
+    detail?: string;
+    mode?: string;
+  }>;
 }) {
   const user = await getAdminUser();
   if (user) redirect("/admin");
 
-  const { reset_sent, error, mode } = await searchParams;
+  const { reset_sent, error, detail, mode } = await searchParams;
   const isReset = mode === "reset";
 
   return (
@@ -45,7 +50,7 @@ export default async function LoginPage({
             >
               Reset-Link senden
             </SubmitButton>
-            {error ? <ErrorMessage code={error} /> : null}
+            {error ? <ErrorMessage code={error} detail={detail} /> : null}
             <p className="text-xs text-zinc-500">
               <Link href="/login" className="hover:underline">
                 ← Zurück zum Login
@@ -62,7 +67,7 @@ export default async function LoginPage({
             >
               Anmelden
             </SubmitButton>
-            {error ? <ErrorMessage code={error} /> : null}
+            {error ? <ErrorMessage code={error} detail={detail} /> : null}
             <p className="text-xs text-zinc-500">
               <Link href="/login?mode=reset" className="hover:underline">
                 Passwort vergessen?
@@ -107,7 +112,7 @@ function Field({
   );
 }
 
-function ErrorMessage({ code }: { code: string }) {
+function ErrorMessage({ code, detail }: { code: string; detail?: string }) {
   const msg =
     code === "invalid_credentials"
       ? "E-Mail oder Passwort falsch."
@@ -116,5 +121,10 @@ function ErrorMessage({ code }: { code: string }) {
         : code === "send_failed"
           ? "Fehler beim Versand. Bitte erneut versuchen."
           : "Unbekannter Fehler.";
-  return <p className="text-sm text-red-600">{msg}</p>;
+  return (
+    <div className="space-y-1">
+      <p className="text-sm text-red-600">{msg}</p>
+      {detail ? <p className="text-xs text-red-500/80">{detail}</p> : null}
+    </div>
+  );
 }

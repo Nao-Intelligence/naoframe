@@ -23,7 +23,12 @@ export async function sendPasswordReset(formData: FormData) {
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${env.APP_URL}/auth/callback?next=/auth/update-password`,
   });
-  if (error) redirect("/login?mode=reset&error=send_failed");
+  if (error) {
+    // Surface the actual Supabase reason so we can debug things like
+    // "redirect URL not allowed", "rate limit reached", "SMTP not configured".
+    const detail = encodeURIComponent(error.message);
+    redirect(`/login?mode=reset&error=send_failed&detail=${detail}`);
+  }
   redirect("/login?reset_sent=1");
 }
 
